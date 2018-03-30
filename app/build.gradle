@@ -30,16 +30,18 @@ android {
         }
     }
 
-    flavorDimensions 'mode'
+    flavorDimensions 'appVar'
 
     productFlavors {
         free {
             applicationId "com.udacity.gradle.builditbigger.free"
-            dimension 'mode'
+            dimension 'appVar'
+            versionName "1.0-free"
         }
         paid {
             applicationId "com.udacity.gradle.builditbigger.paid"
-            dimension 'mode'
+            dimension 'appVar'
+            versionName "1.0-paid"
         }
     }
 

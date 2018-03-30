@@ -29,12 +29,19 @@ import java.io.IOException;
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<String>, View.OnClickListener {
 
     private String mData;
-    private static ProgressBar mPbJoke;
+    private ProgressBar mPbJoke;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //noinspection ConstantConditions
+        if (BuildConfig.FLAVOR.equals("free")){
+            setTitle(getString(R.string.app_name) + " - Free");
+        }else {
+            setTitle(getString(R.string.app_name) + " - Paid");
+        }
 
         mPbJoke = findViewById(R.id.pbJoke);
 
