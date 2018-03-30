@@ -3,7 +3,6 @@ package com.udacity.gradle.builditbigger;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.LoaderManager;
@@ -90,26 +89,20 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     public void onLoadFinished(@NonNull Loader<String> loader, String data) {
         mData = data;
+        mPbJoke.setVisibility(View.GONE);
     }
 
     @Override
-    public void onLoaderReset(@NonNull Loader<String> loader) {
-    }
+    public void onLoaderReset(@NonNull Loader<String> loader) {}
 
     @Override
     public void onClick(View v) {
         mPbJoke.setVisibility(View.VISIBLE);
 
         if (v.getId() == R.id.btnTellJoke) {
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    mPbJoke.setVisibility(View.GONE);
-                    Intent jokeIntent = new Intent(MainActivity.this, JokeDisplayerActivity.class);
-                    jokeIntent.putExtra(Constants.INTENT_EXTRA, mData);
-                    startActivity(jokeIntent);
-                }
-            }, 200);
+            Intent jokeIntent = new Intent(MainActivity.this, JokeDisplayerActivity.class);
+            jokeIntent.putExtra(Constants.INTENT_EXTRA, mData);
+            startActivity(jokeIntent);
         }
     }
 
