@@ -1,0 +1,39 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        jcenter()
+        google()
+    }
+    dependencies {
+        classpath 'com.google.guava:guava:22.0'
+        classpath 'com.android.tools.build:gradle:3.1.0'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        google()
+    }
+}
+
+ext {
+    compileSdkVersion = 27
+    minSdkVersion = 16
+    targetSdkVersion = 27
+    supportLibVersion = '27.1.0'
+    googleApiVersion = '1.23.0'
+    testVersion = '1.0.1'
+    playServicesVersion = '12.0.1'
+    lifeCycleVersion = '1.1.1'
+    findBugsVersion = '3.0.1'
+    espressoIntentsVersion = '3.0.1'
+    espressoCoreVersion = '2.2.2'
+    jUnitVersion = '4.12'
+    versionCode = 1
+    versionName = '1.0'
+}
