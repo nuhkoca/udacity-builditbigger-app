@@ -37,3 +37,14 @@ ext {
     versionCode = 1
     versionName = '1.0'
 }
+
+task runTestsDeployServer{
+
+    dependsOn ':backend:appengineStart'
+    dependsOn ':app:connectedAndroidTest'
+    dependsOn ':backend:appengineStop'
+
+    doLast{
+        println("Task ran successfully. Server stopped.")
+    }
+}

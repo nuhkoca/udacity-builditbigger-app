@@ -11,19 +11,15 @@ buildscript {
 }
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
+    compileSdkVersion 27
     buildToolsVersion '27.0.3'
 
     defaultConfig {
         applicationId "com.udacity.gradle.builditbigger"
-        minSdkVersion rootProject.ext.minSdkVersion
+        minSdkVersion 16
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode rootProject.versionCode
         versionName rootProject.versionName
         multiDexEnabled true
-
-        flavorDimensions "default"
-
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
@@ -34,15 +30,16 @@ android {
         }
     }
 
+    flavorDimensions 'mode'
+
     productFlavors {
         free {
             applicationId "com.udacity.gradle.builditbigger.free"
-            versionName = "1.0-free"
+            dimension 'mode'
         }
-
         paid {
             applicationId "com.udacity.gradle.builditbigger.paid"
-            versionName = "1.0-paid"
+            dimension 'mode'
         }
     }
 
@@ -52,25 +49,21 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:support-v4:27.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     endpointsServer project(path: ':backend', configuration: 'endpoints')
-
     //SupportLibs
     implementation "com.android.support:appcompat-v7:$rootProject.ext.supportLibVersion"
     implementation "com.android.support:support-v4:$rootProject.ext.supportLibVersion"
-
     //Other
-    implementation "com.google.android.gms:play-services-ads:$rootProject.ext.playServicesVersion"
+    freeImplementation "com.google.android.gms:play-services-ads:$rootProject.ext.playServicesVersion"
     implementation "com.google.api-client:google-api-client:$rootProject.ext.googleApiVersion"
     implementation "com.google.http-client:google-http-client-android:$rootProject.ext.googleApiVersion"
     implementation "com.google.code.findbugs:jsr305:$rootProject.ext.findBugsVersion"
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-
     //Lifecycle
     implementation "android.arch.lifecycle:extensions:$rootProject.ext.lifeCycleVersion"
-
     //Testing
     androidTestImplementation "com.android.support.test:runner:$rootProject.ext.testVersion"
     androidTestImplementation "com.android.support.test:rules:$rootProject.ext.testVersion"
@@ -79,7 +72,6 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     testImplementation "junit:junit:$rootProject.ext.jUnitVersion"
-
     implementation project(':jokedisplayer')
     implementation project(':backend')
 }

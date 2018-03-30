@@ -1,5 +1,7 @@
 # Gradle for Android and Java Final Project
 
+<img src="https://github.com/nuhkoca/udacity-builditbigger-app/blob/master/appengine.png" height="500">
+
 In this project, you will create an app with multiple flavors that uses
 multiple libraries and Google Cloud Endpoints. The finished app will consist
 of four modules. A Java library that provides jokes, a Google Cloud Endpoints
