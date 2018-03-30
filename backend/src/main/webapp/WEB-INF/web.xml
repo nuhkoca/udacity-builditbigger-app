@@ -16,4 +16,9 @@
         <url-pattern>/_ah/api/*</url-pattern>
         <!-- V2: End of v2 section -->
     </servlet-mapping>
+
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+
 </web-app>
