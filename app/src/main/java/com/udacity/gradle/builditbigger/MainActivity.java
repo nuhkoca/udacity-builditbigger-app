@@ -19,17 +19,20 @@ import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
 import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
-import com.nuhkoca.jokedisplayer.Constants;
 import com.nuhkoca.jokedisplayer.JokeDisplayerActivity;
 import com.udacity.gradle.builditbigger.backend.jokeApi.JokeApi;
+import com.udacity.gradle.builditbigger.callback.IConnectionCallbackListener;
+import com.udacity.gradle.builditbigger.helper.Constants;
+import com.udacity.gradle.builditbigger.util.AddressUtils;
 
 import java.io.IOException;
 
 
-public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<String>, View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<String>, View.OnClickListener, IConnectionCallbackListener {
 
     private String mData;
     private ProgressBar mPbJoke;
+    private String mErrorData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         Button btnTellJoke = findViewById(R.id.btnTellJoke);
         btnTellJoke.setOnClickListener(this);
 
-        getSupportLoaderManager().initLoader(Contants.LOADER_ID, null, this);
+        getSupportLoaderManager().initLoader(Constants.LOADER_ID, null, this);
     }
 
     @Override
@@ -77,20 +80,20 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     protected void onResume() {
         super.onResume();
 
-        getSupportLoaderManager().restartLoader(Contants.LOADER_ID, null, this);
+        getSupportLoaderManager().restartLoader(Constants.LOADER_ID, null, this);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
 
-        getSupportLoaderManager().destroyLoader(Contants.LOADER_ID);
+        getSupportLoaderManager().destroyLoader(Constants.LOADER_ID);
     }
 
     @NonNull
     @Override
     public Loader<String> onCreateLoader(int id, @Nullable Bundle args) {
-        return new EndpointsAsyncTask(this);
+        return new EndpointsAsyncTask(this, this);
     }
 
     @Override
@@ -108,17 +111,25 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         if (v.getId() == R.id.btnTellJoke) {
             Intent jokeIntent = new Intent(MainActivity.this, JokeDisplayerActivity.class);
-            jokeIntent.putExtra(Constants.INTENT_EXTRA, mData);
+            jokeIntent.putExtra(com.nuhkoca.jokedisplayer.helper.Constants.INTENT_EXTRA, mData);
+            jokeIntent.putExtra(com.nuhkoca.jokedisplayer.helper.Constants.INTENT_ERROR_EXTRA, mErrorData);
             startActivity(jokeIntent);
         }
+    }
+
+    @Override
+    public void onError(String cause) {
+        mErrorData = cause;
     }
 
     private static class EndpointsAsyncTask extends AsyncTaskLoader<String> {
         private JokeApi myApiService = null;
         private String mData = null;
+        private IConnectionCallbackListener iConnectionCallbackListener;
 
-        EndpointsAsyncTask(@NonNull Context context) {
+        EndpointsAsyncTask(@NonNull Context context, IConnectionCallbackListener iConnectionCallbackListener) {
             super(context);
+            this.iConnectionCallbackListener = iConnectionCallbackListener;
         }
 
         @Override
@@ -137,8 +148,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             }
 
             try {
+                iConnectionCallbackListener.onError("");
                 return myApiService.getJoke().execute().getJoke();
             } catch (IOException e) {
+                iConnectionCallbackListener.onError(String.valueOf(e.getClass()));
                 return e.getMessage();
             }
         }
@@ -154,7 +167,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             JokeApi myApiService;
             JokeApi.Builder builder = new JokeApi.Builder(AndroidHttp.newCompatibleTransport(),
                     new AndroidJsonFactory(), null)
-                    .setRootUrl("http://10.0.3.2:8080/_ah/api/")
+                    .setRootUrl(AddressUtils.getIPAddress())
                     .setGoogleClientRequestInitializer(new GoogleClientRequestInitializer() {
                         @Override
                         public void initialize(AbstractGoogleClientRequest<?> abstractGoogleClientRequest) {

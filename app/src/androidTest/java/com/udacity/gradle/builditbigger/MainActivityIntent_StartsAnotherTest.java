@@ -4,7 +4,7 @@ import android.support.test.espresso.intent.rule.IntentsTestRule;
 import android.support.test.filters.LargeTest;
 import android.support.test.runner.AndroidJUnit4;
 
-import com.nuhkoca.jokedisplayer.Constants;
+import com.nuhkoca.jokedisplayer.helper.Constants;
 import com.nuhkoca.jokedisplayer.JokeDisplayerActivity;
 
 import org.junit.Rule;

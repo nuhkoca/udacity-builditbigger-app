@@ -5,4 +5,10 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="JokeTextViewAppearance">
+        <item name="android:layout_marginTop">@dimen/layout_margin</item>
+        <item name="android:textSize">@dimen/text_size</item>
+        <item name="android:textColor">@color/colorBlack</item>
+    </style>
+
 </resources>

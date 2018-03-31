@@ -6,11 +6,15 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.nuhkoca.jokedisplayer.helper.Constants;
 
 public class JokeDisplayerActivity extends AppCompatActivity {
 
@@ -27,6 +31,7 @@ public class JokeDisplayerActivity extends AppCompatActivity {
         }
 
         final TextView tvJoke = findViewById(R.id.tvJoke);
+        TextView tvErrorJoke = findViewById(R.id.tvErrorJoke);
 
         ImageView ivJoke = findViewById(R.id.ivJoke);
         Glide.with(this)
@@ -34,6 +39,7 @@ public class JokeDisplayerActivity extends AppCompatActivity {
                 .into(ivJoke);
 
         final String joke = getIntent().getStringExtra(Constants.INTENT_EXTRA);
+        String error = getIntent().getStringExtra(Constants.INTENT_ERROR_EXTRA);
 
         if (joke != null) {
             jokeDisplayerViewModel.setJoke(joke);
@@ -45,6 +51,14 @@ public class JokeDisplayerActivity extends AppCompatActivity {
                 }
             });
         }
+
+        if (!TextUtils.isEmpty(error)) {
+            tvErrorJoke.setVisibility(View.VISIBLE);
+        } else {
+            tvErrorJoke.setVisibility(View.GONE);
+        }
+
+        Log.d("Joke", error);
     }
 
     @Override

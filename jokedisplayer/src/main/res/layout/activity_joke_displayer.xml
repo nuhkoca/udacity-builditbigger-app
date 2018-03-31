@@ -20,11 +20,20 @@
             android:id="@+id/tvJoke"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/layout_margin"
-            android:textSize="@dimen/text_size"
-            android:textColor="@color/colorBlack"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivJoke" />
+            app:layout_constraintTop_toBottomOf="@+id/ivJoke"
+            style="@style/JokeTextViewAppearance"/>
+
+    <TextView
+        android:id="@+id/tvErrorJoke"
+        style="@style/JokeTextViewAppearance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/joke_error_text"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvJoke" />
 
 </android.support.constraint.ConstraintLayout>

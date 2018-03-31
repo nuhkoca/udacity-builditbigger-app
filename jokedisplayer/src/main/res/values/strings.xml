@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Build It Bigger</string>
+    <string name="joke_error_text">This is also so funny, huh?</string>
 </resources>
