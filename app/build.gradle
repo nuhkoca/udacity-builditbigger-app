@@ -64,6 +64,9 @@ dependencies {
     implementation "com.google.http-client:google-http-client-android:$rootProject.ext.googleApiVersion"
     implementation "com.google.code.findbugs:jsr305:$rootProject.ext.findBugsVersion"
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:$rootProject.ext.leakCanaryVersion"
+    implementation "com.facebook.stetho:stetho:$rootProject.ext.stethoVersion"
+    implementation "com.jakewharton.timber:timber:$rootProject.ext.timberVersion"
     //Lifecycle
     implementation "android.arch.lifecycle:extensions:$rootProject.ext.lifeCycleVersion"
     //Testing

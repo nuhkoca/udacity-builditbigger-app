@@ -36,6 +36,9 @@ ext {
     jUnitVersion = '4.12'
     versionCode = 1
     versionName = '1.0'
+    leakCanaryVersion = '1.5.4'
+    timberVersion = '4.6.1'
+    stethoVersion = '1.5.0'
 }
 
 task runTestsDeployServer{

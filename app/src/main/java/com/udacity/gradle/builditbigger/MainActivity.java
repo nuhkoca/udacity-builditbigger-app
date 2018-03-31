@@ -1,12 +1,10 @@
 package com.udacity.gradle.builditbigger;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.LoaderManager;
-import android.support.v4.content.AsyncTaskLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -15,17 +13,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 
-import com.google.api.client.extensions.android.http.AndroidHttp;
-import com.google.api.client.extensions.android.json.AndroidJsonFactory;
-import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
-import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
 import com.nuhkoca.jokedisplayer.JokeDisplayerActivity;
-import com.udacity.gradle.builditbigger.backend.jokeApi.JokeApi;
 import com.udacity.gradle.builditbigger.callback.IConnectionCallbackListener;
 import com.udacity.gradle.builditbigger.helper.Constants;
-import com.udacity.gradle.builditbigger.util.AddressUtils;
-
-import java.io.IOException;
+import com.udacity.gradle.builditbigger.helper.EndpointsAsyncTask;
 
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<String>, View.OnClickListener, IConnectionCallbackListener {
@@ -40,9 +31,9 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         setContentView(R.layout.activity_main);
 
         //noinspection ConstantConditions
-        if (BuildConfig.FLAVOR.equals("free")){
+        if (BuildConfig.FLAVOR.equals("free")) {
             setTitle(getString(R.string.app_name) + " - Free");
-        }else {
+        } else {
             setTitle(getString(R.string.app_name) + " - Paid");
         }
 
@@ -103,7 +94,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     }
 
     @Override
-    public void onLoaderReset(@NonNull Loader<String> loader) {}
+    public void onLoaderReset(@NonNull Loader<String> loader) {
+    }
 
     @Override
     public void onClick(View v) {
@@ -120,63 +112,5 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     public void onError(String cause) {
         mErrorData = cause;
-    }
-
-    private static class EndpointsAsyncTask extends AsyncTaskLoader<String> {
-        private JokeApi myApiService = null;
-        private String mData = null;
-        private IConnectionCallbackListener iConnectionCallbackListener;
-
-        EndpointsAsyncTask(@NonNull Context context, IConnectionCallbackListener iConnectionCallbackListener) {
-            super(context);
-            this.iConnectionCallbackListener = iConnectionCallbackListener;
-        }
-
-        @Override
-        protected void onStartLoading() {
-            if (mData != null) {
-                deliverResult(mData);
-            } else {
-                forceLoad();
-            }
-        }
-
-        @Override
-        public String loadInBackground() {
-            if (myApiService == null) {
-                myApiService = buildApi();
-            }
-
-            try {
-                iConnectionCallbackListener.onError("");
-                return myApiService.getJoke().execute().getJoke();
-            } catch (IOException e) {
-                iConnectionCallbackListener.onError(String.valueOf(e.getClass()));
-                return e.getMessage();
-            }
-        }
-
-        @Override
-        public void deliverResult(String data) {
-            if (mData == null) mData = data;
-
-            super.deliverResult(data);
-        }
-
-        private static JokeApi buildApi() { // Only do this once
-            JokeApi myApiService;
-            JokeApi.Builder builder = new JokeApi.Builder(AndroidHttp.newCompatibleTransport(),
-                    new AndroidJsonFactory(), null)
-                    .setRootUrl(AddressUtils.getIPAddress())
-                    .setGoogleClientRequestInitializer(new GoogleClientRequestInitializer() {
-                        @Override
-                        public void initialize(AbstractGoogleClientRequest<?> abstractGoogleClientRequest) {
-                            abstractGoogleClientRequest.setDisableGZipContent(true);
-                        }
-                    });
-            myApiService = builder.build();
-
-            return myApiService;
-        }
     }
 }
