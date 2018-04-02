@@ -5,7 +5,7 @@ import android.support.test.filters.LargeTest;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.nuhkoca.jokedisplayer.helper.Constants;
-import com.nuhkoca.jokedisplayer.JokeDisplayerActivity;
+import com.nuhkoca.jokedisplayer.ui.JokeDisplayerActivity;
 
 import org.junit.Rule;
 import org.junit.Test;

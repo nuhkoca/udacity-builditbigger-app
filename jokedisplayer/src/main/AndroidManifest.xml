@@ -4,10 +4,11 @@
     package="com.nuhkoca.jokedisplayer">
 
     <application
+        android:name=".JokeDisplayerApp"
         android:theme="@style/AppTheme"
         android:label="@string/app_name"
-        tools:replace="android:label">
-        <activity android:name=".JokeDisplayerActivity" />
+        tools:replace="android:label, android:name">
+        <activity android:name=".ui.JokeDisplayerActivity" />
     </application>
 
 </manifest>

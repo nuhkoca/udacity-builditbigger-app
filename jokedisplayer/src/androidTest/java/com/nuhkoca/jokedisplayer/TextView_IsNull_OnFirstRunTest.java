@@ -3,6 +3,8 @@ package com.nuhkoca.jokedisplayer;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
+import com.nuhkoca.jokedisplayer.ui.JokeDisplayerActivity;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;

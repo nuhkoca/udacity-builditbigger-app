@@ -1,4 +1,4 @@
-package com.nuhkoca.jokedisplayer;
+package com.nuhkoca.jokedisplayer.ui;
 
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;

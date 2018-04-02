@@ -36,6 +36,9 @@ dependencies {
 
 appengine {  // App Engine tasks configuration
     tools.cloudSdkHome = "/Users/nuhkoca/google-cloud-sdk"
+    run {
+        host = "0.0.0.0"
+    }
     deploy {   // deploy configuration
 
         project = findProperty("appengine.deploy.project")

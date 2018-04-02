@@ -9,6 +9,12 @@ import timber.log.Timber;
 
 public class BuildItBiggerApp extends Application {
 
+    private static BuildItBiggerApp mApp;
+
+    public static BuildItBiggerApp getInstance(){
+        return mApp;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -16,6 +22,8 @@ public class BuildItBiggerApp extends Application {
         initLeakCanary();
         initTimber();
         initStetho();
+
+        mApp = this;
     }
 
     private void initLeakCanary() {

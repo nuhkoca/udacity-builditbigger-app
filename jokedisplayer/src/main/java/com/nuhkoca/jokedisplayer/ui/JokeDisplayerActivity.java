@@ -1,4 +1,4 @@
-package com.nuhkoca.jokedisplayer;
+package com.nuhkoca.jokedisplayer.ui;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
@@ -7,14 +7,16 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.nuhkoca.jokedisplayer.R;
 import com.nuhkoca.jokedisplayer.helper.Constants;
+
+import timber.log.Timber;
 
 public class JokeDisplayerActivity extends AppCompatActivity {
 
@@ -58,7 +60,7 @@ public class JokeDisplayerActivity extends AppCompatActivity {
             tvErrorJoke.setVisibility(View.GONE);
         }
 
-        Log.d("Joke", error);
+        Timber.d(error);
     }
 
     @Override

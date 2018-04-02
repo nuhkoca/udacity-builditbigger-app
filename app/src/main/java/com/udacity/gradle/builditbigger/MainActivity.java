@@ -13,7 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 
-import com.nuhkoca.jokedisplayer.JokeDisplayerActivity;
+import com.nuhkoca.jokedisplayer.ui.JokeDisplayerActivity;
 import com.udacity.gradle.builditbigger.callback.IConnectionCallbackListener;
 import com.udacity.gradle.builditbigger.helper.Constants;
 import com.udacity.gradle.builditbigger.helper.EndpointsAsyncTask;

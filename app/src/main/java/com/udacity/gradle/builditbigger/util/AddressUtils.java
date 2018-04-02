@@ -1,5 +1,7 @@
 package com.udacity.gradle.builditbigger.util;
 
+import com.udacity.gradle.builditbigger.BuildItBiggerApp;
+import com.udacity.gradle.builditbigger.R;
 import com.udacity.gradle.builditbigger.helper.Constants;
 
 import java.net.Inet4Address;
@@ -7,6 +9,8 @@ import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.util.Enumeration;
+
+import timber.log.Timber;
 
 public class AddressUtils {
     public static String getIPAddress() {
@@ -21,7 +25,11 @@ public class AddressUtils {
                     for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements(); ) {
                         InetAddress inetAddress = enumIpAddr.nextElement();
                         if (!inetAddress.isLoopbackAddress() && inetAddress instanceof Inet4Address) {
-                            return inetAddress.getHostAddress() + ":8080/_ah/api/";
+                            Timber.d(String.format(BuildItBiggerApp.getInstance()
+                                    .getString(R.string.real_device_ip_address), inetAddress.getHostAddress()));
+
+                            return String.format(BuildItBiggerApp.getInstance()
+                                    .getString(R.string.real_device_ip_address), inetAddress.getHostAddress());
                         }
                     }
                 }
