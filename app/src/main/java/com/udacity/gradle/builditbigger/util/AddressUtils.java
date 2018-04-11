@@ -19,25 +19,28 @@ public class AddressUtils {
         if (isEmulator) {
             return Constants.EMULATOR_IP_ADDRESS;
         } else {
-            try {
-                for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements(); ) {
-                    NetworkInterface intf = en.nextElement();
-                    for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements(); ) {
-                        InetAddress inetAddress = enumIpAddr.nextElement();
-                        if (!inetAddress.isLoopbackAddress() && inetAddress instanceof Inet4Address) {
-                            Timber.d(String.format(BuildItBiggerApp.getInstance()
-                                    .getString(R.string.real_device_ip_address), inetAddress.getHostAddress()));
+            return getDeviceIPAddress();
+        }
+    }
 
-                            return String.format(BuildItBiggerApp.getInstance()
-                                    .getString(R.string.real_device_ip_address), inetAddress.getHostAddress());
-                        }
+    private static String getDeviceIPAddress() {
+        try {
+            for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements(); ) {
+                NetworkInterface intf = en.nextElement();
+                for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements(); ) {
+                    InetAddress inetAddress = enumIpAddr.nextElement();
+                    if (!inetAddress.isLoopbackAddress() && inetAddress instanceof Inet4Address) {
+                        Timber.d(inetAddress.getHostAddress());
+
+                        return String.format(BuildItBiggerApp.getInstance()
+                                .getString(R.string.real_device_ip_address), inetAddress.getHostAddress());
                     }
                 }
-            } catch (SocketException e) {
-                e.printStackTrace();
             }
+        } catch (SocketException e) {
+            e.printStackTrace();
         }
 
-        return null;
+        return "";
     }
 }
