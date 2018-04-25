@@ -1,6 +1,6 @@
 # Gradle for Android and Java Final Project
 
-![App Logo](https://github.com/nuhkoca/udacity-builditbigger-app/blob/master/art/logo.png)
+![App Logo](https://github.com/nuhkoca/udacity-builditbigger-app/blob/master/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png)
 
 <img src="https://github.com/nuhkoca/udacity-builditbigger-app/blob/master/appengine.png" height="500">
 
@@ -59,7 +59,7 @@ Gradle to manage apps of increasing complexity. You'll learn to:
 ### Paid Version
 
 <p align="left">
-<img src="https://github.com/nuhkoca/udacity-builditbigger-app/blob/master/art/paid-main" height="500"/>
+<img src="https://github.com/nuhkoca/udacity-builditbigger-app/blob/master/art/paid-main.png" height="500"/>
 <img src="https://github.com/nuhkoca/udacity-builditbigger-app/blob/master/art/paid-joke-detail.png" height="500"/>
 </p>
 
