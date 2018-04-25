@@ -1,5 +1,7 @@
 # Gradle for Android and Java Final Project
 
+![App Logo](https://github.com/nuhkoca/udacity-builditbigger-app/blob/master/art/logo.png)
+
 <img src="https://github.com/nuhkoca/udacity-builditbigger-app/blob/master/appengine.png" height="500">
 
 In this project, you will create an app with multiple flavors that uses
@@ -27,6 +29,39 @@ Gradle to manage apps of increasing complexity. You'll learn to:
 * Configure a multi project build to compile your libraries and app
 * Use the Gradle App Engine plugin to deploy a backend
 * Configure an integration test suite that runs against the local App Engine development server
+
+## What the project uses
+
+* [GCE Module](https://github.com/GoogleCloudPlatform/gradle-appengine-templates)
+* [LeakCanary](https://github.com/square/leakcanary)
+* [Timber](https://github.com/JakeWharton/timber)
+* [Stetho](https://github.com/facebook/stetho)
+* [Espresso](https://github.com/googlesamples/android-testing)
+
+## ToDo List
+
+- [x] GCE module is installed.
+- [x] Free and paid versions got split from each other.
+- [x] Free version has ads.
+- [x] Paid version doesn't have any ads.
+- [x] Jokes are fetched over GCE module.
+- [x] App is tracked closely by Stetho and LeakCanary.
+
+## Screenshots
+
+### Free Version
+
+<p align="left">
+<img src="https://github.com/nuhkoca/udacity-builditbigger-app/blob/master/art/free-main.png" height="500"/>
+<img src="https://github.com/nuhkoca/udacity-builditbigger-app/blob/master/art/free-joke-detail.png" height="500"/>
+</p>
+
+### Paid Version
+
+<p align="left">
+<img src="https://github.com/nuhkoca/udacity-builditbigger-app/blob/master/art/paid-main" height="500"/>
+<img src="https://github.com/nuhkoca/udacity-builditbigger-app/blob/master/art/paid-joke-detail.png" height="500"/>
+</p>
 
 ## How Do I Complete this Project?
 
@@ -168,3 +203,33 @@ Once you have a functioning project, consider adding more features to test your 
 * Make the free app variant display interstitial ads between the main activity and the joke-displaying activity.
 * Have the app display a loading indicator while the joke is being fetched from the server.
 * Write a Gradle task that starts the GCE dev server, runs all the Android tests, and shuts down the dev server.
+
+# License
+
+App icon based on:
+
+Icons made by Freepik from www.flaticon.com is licensed by CC 3.0 BY
+
+```
+MIT License
+
+Copyright (c) 2018 Nuh Koca
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```

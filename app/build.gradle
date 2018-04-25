@@ -52,8 +52,7 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:support-v4:27.1.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     endpointsServer project(path: ':backend', configuration: 'endpoints')
     //SupportLibs
     implementation "com.android.support:appcompat-v7:$rootProject.ext.supportLibVersion"
@@ -63,7 +62,6 @@ dependencies {
     implementation "com.google.api-client:google-api-client:$rootProject.ext.googleApiVersion"
     implementation "com.google.http-client:google-http-client-android:$rootProject.ext.googleApiVersion"
     implementation "com.google.code.findbugs:jsr305:$rootProject.ext.findBugsVersion"
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$rootProject.ext.leakCanaryVersion"
     implementation "com.facebook.stetho:stetho:$rootProject.ext.stethoVersion"
     implementation "com.jakewharton.timber:timber:$rootProject.ext.timberVersion"

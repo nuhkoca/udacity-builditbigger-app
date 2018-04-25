@@ -33,7 +33,7 @@ public class AddressUtils {
                         Timber.d(inetAddress.getHostAddress());
 
                         return String.format(BuildItBiggerApp.getInstance()
-                                .getString(R.string.real_device_ip_address), inetAddress.getHostAddress());
+                                .getString(R.string.real_device_ip_address), inetAddress.getHostAddress());  //place your computer's IP address
                     }
                 }
             }

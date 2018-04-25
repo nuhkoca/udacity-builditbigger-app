@@ -25,7 +25,7 @@ ext {
     compileSdkVersion = 27
     minSdkVersion = 16
     targetSdkVersion = 27
-    supportLibVersion = '27.1.0'
+    supportLibVersion = '27.1.1'
     googleApiVersion = '1.23.0'
     testVersion = '1.0.1'
     playServicesVersion = '12.0.1'
