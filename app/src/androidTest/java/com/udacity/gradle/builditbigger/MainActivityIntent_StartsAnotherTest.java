@@ -37,6 +37,7 @@ public class MainActivityIntent_StartsAnotherTest {
     public IntentsTestRule<MainActivity> mActivityTestRule = new IntentsTestRule<>(MainActivity.class);
 
 
+    @SuppressWarnings("unchecked")
     @Test
     public void intent_OpensActivity() {
         onView(allOf(withId(R.id.btnTellJoke))).perform(click());
